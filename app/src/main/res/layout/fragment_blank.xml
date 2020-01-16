@@ -17,7 +17,7 @@
             android:layout_marginTop="5dp"
             android:id="@+id/textView_ID"
             android:layout_height="wrap_content"
-            android:text="@string/changed" />
+            android:text="@string/changed2" />
 
     <ListView
             android:layout_width="match_parent"
