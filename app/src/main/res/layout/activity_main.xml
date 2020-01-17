@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/appBarLayout_ID"
+            android:keepScreenOn="true"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            >
+
+        <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:titleTextColor="@color/colorAccent"
+
+                app:layout_scrollFlags="scroll|enterAlways"
+                android:background="@color/colorPrimary"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                />
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+      <LinearLayout
+              android:layout_width="match_parent"
+              android:orientation="vertical"
+              android:layout_marginTop="5dp"
+              app:layout_behavior="@string/appbar_scrolling_view_behavior"
+              android:layout_below="@+id/appBarLayout_ID"
+              android:layout_height="match_parent">
+          <ImageView
+                  android:layout_width="match_parent"
+                  android:layout_height="298dp"
+                  android:id="@+id/imageView_ID"
+                  android:layout_gravity="center|top"
+                  android:contentDescription="@string/Main_Logo"
+                  android:src="@drawable/starbuzz_logo" />
+
+          <androidx.viewpager.widget.ViewPager
+                  android:id="@+id/viewPager_ID"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:layout_marginTop="5dp"
+                >
+
+              <com.google.android.material.tabs.TabLayout
+                      android:id="@+id/tabs"
+                      app:tabGravity="fill"
+                      app:tabMode="fixed"
+                      app:tabUnboundedRipple="true"  
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      app:tabSelectedTextColor="@color/custom1"
+                      />
+
+          </androidx.viewpager.widget.ViewPager>
+
+      </LinearLayout>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

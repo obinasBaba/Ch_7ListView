@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Ch_7ListView</string>
+    <string name="Main_Logo">Main_Logo</string>
+    <string name="textView_Row">tex view for Row</string>
+
+    <string-array name="Options">
+        <item>Drinks</item>
+        <item>Foods</item>
+        <item>Stores</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Framgent">Fragment - </string>
+    <string name="home_tab">Drinks</string>
+    <string name="pizza_tab">Foods</string>
+    <string name="pasta_tab">Stre</string>
+</resources>
