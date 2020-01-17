@@ -1,24 +1,22 @@
 package com.hfad.ch_7listview;
 
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckedTextView;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import java.util.Locale;
 
@@ -32,6 +30,7 @@ public class drinkFragment extends Fragment {
     private static final String PAGE = "";
     private TextView tv;
     private ListView listView;
+    private SQLiteDatabase rdb;
 
     public static drinkFragment getInstance(int page) {
         drinkFragment thisFrag = new drinkFragment();
@@ -45,6 +44,14 @@ public class drinkFragment extends Fragment {
         // Required empty public constructor
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate( savedInstanceState );
+        StarbuzzDatabase starbuzzDatabase = new StarbuzzDatabase( getContext() );
+        rdb = starbuzzDatabase.getReadableDatabase();
+
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
