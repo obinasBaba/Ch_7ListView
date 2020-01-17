@@ -15,4 +15,5 @@
     <string name="home_tab">Drinks</string>
     <string name="pizza_tab">Foods</string>
     <string name="pasta_tab">Stre</string>
+    <string name="changed">GIT</string>
 </resources>
