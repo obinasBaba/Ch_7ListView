@@ -4,6 +4,8 @@ package com.hfad.ch_7listview;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -28,12 +30,9 @@ import java.util.Locale;
  */
 public class drinkFragment extends Fragment {
 
-
     private static final String PAGE = "";
-    private TextView tv;
-    private ListView listView;
 
-    public static drinkFragment getInstance(int page) {
+     static drinkFragment getInstance(int page) {
         drinkFragment thisFrag = new drinkFragment();
         Bundle bundle = new Bundle();
         bundle.putInt( PAGE, page );
@@ -50,47 +49,40 @@ public class drinkFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate( R.layout.fragment_blank, container, false );
-        assert getArguments() != null;
-        tv = root.findViewById( R.id.textView_ID );
+                //TextView at the top
+        TextView tv = root.findViewById( R.id.textView_ID );
         tv.setText( String.format( Locale.getDefault(), "frag %d", getArguments().getInt( PAGE ) ) );
 
-        listView = root.findViewById( R.id.theList );
-        listView.setAdapter( new customLayout( getActivity(), Drinks.drinks ) );
+        ListView listView = root.findViewById( R.id.theList );
+        listView.setAdapter( new customLayout2( getContext() ) );
 
-        AdapterView.OnItemClickListener listen = new AdapterView.OnItemClickListener() {
+        listView.setOnItemClickListener( new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent( getContext(), DrinkDetail.class );
-                intent.putExtra( DrinkDetail.sendMe, id );
+                intent.putExtra( DrinkDetail.sendMe, position );
                 startActivity( intent );
             }
-        };
-
-        listView.setOnItemClickListener( listen );
-
-
+        } );
         return root;
     }
 
-    private class customLayout extends ArrayAdapter<Drinks> {
-        customLayout(Context context, Drinks[] drinks) {
-            super( context, R.layout.catagorylayout, drinks );
+    private class customLayout2 extends ArrayAdapter<Drinks> {
+        customLayout2(Context context) {
+            super( context, R.layout.catagorylayout, Drinks.drinks );
         }
-
         @NonNull
         @Override
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
             if (convertView == null)
-                convertView = LayoutInflater.from( parent.getContext() ).inflate( R.layout.listview_custom, parent, false );
+                convertView = LayoutInflater.from( getContext() )
+                        .inflate( R.layout.catagorylayout, parent, false );
 
-            try {
-                CheckedTextView ctv = convertView.findViewById( R.id.text1 );
-                ctv.setText( getItem( position ).toString() );
-                if ((position % 2) == 0) ctv.setChecked( true );
+            ImageView imageView = convertView.findViewById( R.id.imageViewRow );
+            TextView title = convertView.findViewById( R.id.textviewForTitle );
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            imageView.setImageResource( Drinks.drinks[position].getImageResourceID() );
+            title.setText( Drinks.drinks[position].toString() );
             return convertView;
         }
 

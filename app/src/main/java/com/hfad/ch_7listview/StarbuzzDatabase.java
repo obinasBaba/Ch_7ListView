@@ -30,7 +30,6 @@ public class StarbuzzDatabase extends SQLiteOpenHelper {
         contentValues.put( "name", name );
         contentValues.put( "description", des );
         contentValues.put( "IMG_resource", resID );
-
         db.insert( "drink", null, contentValues );
     }
 
@@ -48,8 +47,6 @@ public class StarbuzzDatabase extends SQLiteOpenHelper {
             insertDrink( db, "Filter", "Our best drip coffee", R.drawable.filter );
 
         }else if ( oldVersion < 2 )
-        {
             db.execSQL( "ALTER TABLE drink ADD COLUMN favorite NUMERIC;" );
-        }
     }
 }

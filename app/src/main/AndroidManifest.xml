@@ -14,7 +14,6 @@
         <activity android:name=".DrinkDetail"></activity>
 
 
-        <activity android:name=".DrinkCatagoryActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
